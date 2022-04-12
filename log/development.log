@@ -380,3 +380,317 @@ Processing by ArticlesController#edit as HTML
 Completed 200 OK in 46ms (Views: 37.6ms | ActiveRecord: 0.4ms | Allocations: 51064)
 
 
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20220412081735)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "commenter" varchar, "body" text, "article_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_3bf61a60d3"
+FOREIGN KEY ("article_id")
+  REFERENCES "articles" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_comments_on_article_id" ON "comments" ("article_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220412081735"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-04-12 09:31:04 +0100
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 5474)
+  Rendered layout layouts/application.html.erb (Duration: 31.8ms | Allocations: 40225)
+Completed 200 OK in 40ms (Views: 33.5ms | ActiveRecord: 0.4ms | Allocations: 45510)
+
+
+Started GET "/articles/2" for 127.0.0.1 at 2022-04-12 09:31:07 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 14.1ms | Allocations: 4200)
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | Allocations: 4275)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.4ms | Allocations: 6687)
+
+
+  
+ActionView::Template::Error (undefined method `comments' for #<Article:0x00007fa7c3e520c8>
+Did you mean?  committed!):
+    11: </ul>
+    12: 
+    13: <h2>Comments</h2>
+    14: <% @article.comments.each do |comment| %>
+    15:   <p>
+    16:     <strong>Commenter:</strong>
+    17:     <%= comment.body %>
+  
+app/views/articles/show.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-04-12 09:32:01 +0100
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 5474)
+  Rendered layout layouts/application.html.erb (Duration: 31.5ms | Allocations: 39469)
+Completed 200 OK in 37ms (Views: 32.5ms | ActiveRecord: 0.4ms | Allocations: 44754)
+
+
+Started GET "/articles/1" for 127.0.0.1 at 2022-04-12 09:32:03 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (1.5ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 13.7ms | Allocations: 4201)
+  Rendered layout layouts/application.html.erb (Duration: 14.0ms | Allocations: 4276)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 1.5ms | Allocations: 6688)
+
+
+  
+ActionView::Template::Error (undefined method `comments' for #<Article:0x00007f9c3f028130>
+Did you mean?  committed!):
+    11: </ul>
+    12: 
+    13: <h2>Comments</h2>
+    14: <% @article.comments.each do |comment| %>
+    15:   <p>
+    16:     <strong>Commenter:</strong>
+    17:     <%= comment.body %>
+  
+app/views/articles/show.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-04-12 09:32:35 +0100
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 5474)
+  Rendered layout layouts/application.html.erb (Duration: 31.3ms | Allocations: 39639)
+Completed 200 OK in 37ms (Views: 32.3ms | ActiveRecord: 0.4ms | Allocations: 44924)
+
+
+Started GET "/articles/1" for 127.0.0.1 at 2022-04-12 09:32:36 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.7ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 15.4ms | Allocations: 4201)
+  Rendered layout layouts/application.html.erb (Duration: 15.8ms | Allocations: 4276)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.7ms | Allocations: 6688)
+
+
+  
+ActionView::Template::Error (undefined method `comments' for #<Article:0x00007fcec41f91a0>
+Did you mean?  committed!):
+    11: </ul>
+    12: 
+    13: <h2>Comments</h2>
+    14: <% @article.comments.each do |comment| %>
+    15:   <p>
+    16:     <strong>Commenter:</strong>
+    17:     <%= comment.commenter %>
+  
+app/views/articles/show.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-04-12 09:33:07 +0100
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 5474)
+  Rendered layout layouts/application.html.erb (Duration: 30.7ms | Allocations: 39828)
+Completed 200 OK in 36ms (Views: 31.7ms | ActiveRecord: 0.5ms | Allocations: 45113)
+
+
+Started GET "/articles/1" for 127.0.0.1 at 2022-04-12 09:33:08 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (1.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 11.8ms | Allocations: 4227)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | Allocations: 4302)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 1.1ms | Allocations: 6714)
+
+
+  
+ActionView::Template::Error (undefined method `comments' for #<Article:0x00007f7b3208a2a0>
+Did you mean?  committed!):
+    11: </ul>
+    12: 
+    13: <h2>Comments</h2>
+    14: <% @article.comments.each do |comment| %>
+    15:   <p>
+    16:     <strong>Commenter:</strong>
+    17:     <%= comment.commenter %>
+  
+app/views/articles/show.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-04-12 09:33:54 +0100
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 5474)
+  Rendered layout layouts/application.html.erb (Duration: 32.3ms | Allocations: 39513)
+Completed 200 OK in 37ms (Views: 33.2ms | ActiveRecord: 0.4ms | Allocations: 44798)
+
+
+Started GET "/articles/2" for 127.0.0.1 at 2022-04-12 09:33:55 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 12.6ms | Allocations: 4227)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 4302)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.5ms | Allocations: 6714)
+
+
+  
+ActionView::Template::Error (undefined method `comments' for #<Article:0x00007f7cfecbb218>
+Did you mean?  committed!):
+    11: </ul>
+    12: 
+    13: <h2>Comments</h2>
+    14: <% @article.comments.each do |comment| %>
+    15:   <p>
+    16:     <strong>Commenter:</strong>
+    17:     <%= comment.commenter %>
+  
+app/views/articles/show.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-04-12 09:34:21 +0100
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 5474)
+  Rendered layout layouts/application.html.erb (Duration: 31.5ms | Allocations: 39741)
+Completed 200 OK in 37ms (Views: 32.4ms | ActiveRecord: 0.5ms | Allocations: 45026)
+
+
+Started GET "/articles/2" for 127.0.0.1 at 2022-04-12 09:34:22 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (1.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 12.9ms | Allocations: 4228)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | Allocations: 4303)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 1.3ms | Allocations: 6715)
+
+
+  
+ActionView::Template::Error (undefined method `comments' for #<Article:0x00007f78fc06be00>
+Did you mean?  committed!):
+    11: </ul>
+    12: 
+    13: <h2>Comments</h2>
+    14: <% @article.comments.each do |comment| %>
+    15:   <p>
+    16:     <strong>Commenter:</strong>
+    17:     <%= comment.commenter %>
+  
+app/views/articles/show.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-04-12 09:35:39 +0100
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 5474)
+  Rendered layout layouts/application.html.erb (Duration: 31.9ms | Allocations: 39676)
+Completed 200 OK in 37ms (Views: 32.8ms | ActiveRecord: 0.4ms | Allocations: 44961)
+
+
+Started GET "/articles/1" for 127.0.0.1 at 2022-04-12 09:35:40 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.9ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 10.1ms | Allocations: 4227)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 4302)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.9ms | Allocations: 6714)
+
+
+  
+ActionView::Template::Error (undefined method `comments' for #<Article:0x00007f81fc24eb38>
+Did you mean?  committed!):
+    11: </ul>
+    12: 
+    13: <h2>Comments</h2>
+    14: <% @article.comments.each do |comment| %>
+    15:   <p>
+    16:     <strong>Commenter:</strong>
+    17:     <%= comment.commenter %>
+  
+app/views/articles/show.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-04-12 09:36:44 +0100
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 5020)
+  Rendered layout layouts/application.html.erb (Duration: 30.8ms | Allocations: 39269)
+Completed 200 OK in 40ms (Views: 32.1ms | ActiveRecord: 0.4ms | Allocations: 46522)
+
+
+Started GET "/articles/2" for 127.0.0.1 at 2022-04-12 09:36:45 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 2]]
+  ↳ app/views/articles/show.html.erb:14
+  Rendered articles/show.html.erb within layouts/application (Duration: 43.5ms | Allocations: 18079)
+  Rendered layout layouts/application.html.erb (Duration: 45.8ms | Allocations: 20160)
+Completed 200 OK in 53ms (Views: 45.0ms | ActiveRecord: 1.8ms | Allocations: 22596)
+
+
+Started GET "/articles/1" for 127.0.0.1 at 2022-04-12 09:36:49 +0100
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:14
+  Rendered articles/show.html.erb within layouts/application (Duration: 6.9ms | Allocations: 1668)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 3740)
+Completed 200 OK in 12ms (Views: 9.3ms | ActiveRecord: 0.4ms | Allocations: 4454)
+
+
